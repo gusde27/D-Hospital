@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct D_HospitalApp: App {
+    
+    //var network = Network()
+
     var body: some Scene {
         WindowGroup {
             HomeView()
+                //.environmentObject(network)
         }
     }
 }

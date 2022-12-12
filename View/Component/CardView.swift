@@ -12,7 +12,7 @@ struct CardView: View {
     //variable
     var hospitalName: String = ""
     var province: String = ""
-    var hospitalTelp: String = ""
+    var hospitalTelp: String = "(0361) 943049"
     
     var body: some View {
         
@@ -27,13 +27,16 @@ struct CardView: View {
                         .font(.headline)
                         .foregroundColor(.secondary)
                     Text(hospitalName)
-                        .font(.title)
+                        .font(.title3)
                         .fontWeight(.black)
                         .foregroundColor(.primary)
                         .lineLimit(3)
                     
                     Button(action: {
-                        
+                        let tel = "tel://"
+                        let formattedString = tel + hospitalTelp
+                        guard let url = URL(string: formattedString) else { return }
+                        UIApplication.shared.open(url)
                     }, label: {
                         Text("telp".uppercased())
                             .font(.caption)
@@ -54,7 +57,7 @@ struct CardView: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1)
         )
         .padding([.top, .horizontal])
         
@@ -63,6 +66,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(hospitalName: "RS Sanglah", province: "Bali")
+        CardView(hospitalName: "RS Sanglah", province: "Bali", hospitalTelp: "(0361) 943049")
     }
 }
